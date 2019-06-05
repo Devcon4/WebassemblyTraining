@@ -1,0 +1,25 @@
+{
+  "name": "webassemblytraining",
+  "version": "1.0.0",
+  "description": "A starter app to learn how to use webassembly.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devcon4/WebassemblyTraining.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Devcon4/WebassemblyTraining/issues"
+  },
+  "homepage": "https://github.com/Devcon4/WebassemblyTraining#readme",
+  "devDependencies": {
+    "lit-element": "^2.1.0",
+    "parcel": "^1.12.3",
+    "typescript": "^3.5.1"
+  },
+  "browserslist": ["> 5%"]
+}
