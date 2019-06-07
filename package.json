@@ -21,5 +21,10 @@
     "parcel": "^1.12.3",
     "typescript": "^3.5.1"
   },
-  "browserslist": ["> 5%"]
+  "browserslist": [
+    "> 5%"
+  ],
+  "dependencies": {
+    "images": "^3.0.2"
+  }
 }
