@@ -1,6 +1,5 @@
 import { LitElement, html, customElement, css} from 'lit-element';
 import bryceCanyon from './images/Bryce-Canyon.jpg';
-import blurImage from './images/White-Blur.png';
 
 @customElement('wasm-header')
 class WasmHeaderComponent extends LitElement {
