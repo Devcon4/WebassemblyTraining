@@ -1,6 +1,6 @@
 class Context {
     public:
-        Context (int width, int height, char * shader);
+        Context (int width, int height, char* id, char* fragmentSource, char* vertexSource);
         ~Context (void);
         void run(uint8_t* buffer);
 
@@ -13,4 +13,4 @@ class Context {
 
         EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context;
 
-}
+};

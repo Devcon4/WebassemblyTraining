@@ -1,6 +1,6 @@
 #include "Context.h"
 
-GLuint CompileShader(GLenum type, std::string *source) {
+GLuint CompileShader(GLenum type, char* source) {
 
     const GLchar* sourceString[1];
     GLint sourceStringLengths[1];
@@ -20,7 +20,7 @@ GLuint CompileShader(GLenum type, std::string *source) {
     if(infoLen > 1) {
         char infoLog[infoLen];
 
-        glGetShaderInfo(shader, infoLen, NULL, infoLog);
+        glGetShaderInfoLog(shader, infoLen, NULL, infoLog);
         printf("%s\n", infoLog);
         free(infoLog);
     }
@@ -28,12 +28,12 @@ GLuint CompileShader(GLenum type, std::string *source) {
     return shader;
 }
 
-Context::Context (int w, int h, std::string *shaderSource) {
+Context::Context (int w, int h, char* id, char* fragmentSource, char* vertexSource) {
     width = w;
     height = h;
 
     EmscriptenWebGLContextAttributes attrs;
-    attrs.explicitSwapContral = 0;
+    attrs.explicitSwapControl = 0;
     attrs.depth = 1;
     attrs.stencil = 1;
     attrs.antialias = 1;
@@ -42,6 +42,18 @@ Context::Context (int w, int h, std::string *shaderSource) {
 
     context = emscripten_webgl_create_context(id, &attrs);
     emscripten_webgl_make_context_current(context);
+
+    fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentSource);
+    vertexShader = CompileShader(GL_VERTEX_SHADER, vertexSource);
+
+    programObject = glCreateProgram();
+    glAttachShader(programObject, vertexShader);
+    glAttachShader(programObject, fragmentShader);
+
+    glBindAttribLocation(programObject, 0, "position");
+
+    glLinkProgram(programObject);
+    glValidateProgram(programObject);
 
 }
 
@@ -74,7 +86,7 @@ void Context::run (uint8_t* buffer) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     GLfloat vVertices[] = { -1.0, 1.0, 0.0, 0.0, -1.0, -1.0, 0.0, 0.0, 1.0,
-                            1.o, -1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0};
+                            1.0, -1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0};
     GLushort indices[] = { 0, 1, 2, 0, 2, 3 };
 
     glGenBuffers(1, &vertexObject);

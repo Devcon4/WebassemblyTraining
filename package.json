@@ -4,7 +4,9 @@
   "description": "A starter app to learn how to use webassembly.",
   "main": "main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:cpp": "emcc -s USE_WEBGL2=1 ./Context.cpp",
+    "serve:ts": "tsc -w --outDir ../assets/workers/ ./image-proccessor.ts ./ioc.ts ./state.ts"
   },
   "repository": {
     "type": "git",
@@ -17,8 +19,13 @@
   },
   "homepage": "https://github.com/Devcon4/WebassemblyTraining#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-syntax-async-generators": "^7.2.0",
+    "comlink": "^4.0.1",
     "lit-element": "^2.1.0",
     "parcel": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.1.2",
     "typescript": "^3.5.1"
   },
   "browserslist": [
@@ -26,5 +33,9 @@
   ],
   "dependencies": {
     "images": "^3.0.2"
+  },
+  "staticFiles": {
+    "staticPath": "src/assets",
+    "watcherGlob": "**"
   }
 }
