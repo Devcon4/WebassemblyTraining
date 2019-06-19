@@ -1,5 +1,3 @@
-import * as Comlink from 'comlink';
-
 import './services/ioc';
 import './services/image-proccessor';
 import './services/state';

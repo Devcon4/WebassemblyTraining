@@ -1,7 +1,8 @@
-import { LitElement, html, customElement, css } from 'lit-element';
 
 import './WasmHeaderComponent';
 import './WasmContentComponent';
+import { customElement, LitElement, css } from 'lit-element';
+import { html } from 'lit-html';
 
 @customElement('wasm-app')
 class AppComponent extends LitElement {

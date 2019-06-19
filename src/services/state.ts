@@ -1,5 +1,3 @@
-import * as Comlink from 'comlink';
-import bryce from '../assets/images/Bryce-Canyon.jpg';
 import { IocService } from './ioc';
 
 export class Filter {
@@ -27,10 +25,33 @@ export class State {
             vertexSource: 'test-2'
         }));
 
+        this.filters.push(new Filter({
+            name: 'default',
+            vertexSource: `
+            attribute vec4 position;   \n
+            attribute vec2 texCoord;   \n
+            varying vec2 v_texCoord;     \n
+            void main()                  \n
+            {                            \n
+                gl_Position = position; \n
+                v_texCoord = texCoord;  \n
+            }                            \n
+            `,
+            fragmentSource: `
+                precision mediump float;                            \n
+                varying vec2 v_texCoord;                            \n
+                uniform sampler2D texture;                        \n
+                void main()                                         \n
+                {                                                   \n
+                gl_FragColor = texture2D( texture, v_texCoord );   \n
+                }                                                   \n
+            `
+        }))
+
         IocService.ImageProccessor.setMap();
 
         this.currentImage = new Image();
-        this.currentImage.addEventListener("load", () => IocService.ImageProccessor.updateImage());
-        this.currentImage.src = bryce;
+        // this.currentImage.addEventListener("load", () => IocService.ImageProccessor.updateImage());
+        // this.currentImage.src = bryce;
     }
 }

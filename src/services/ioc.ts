@@ -1,4 +1,3 @@
-import * as Comlink from 'comlink';
 import { ImageProccessor } from './image-proccessor';
 import { State } from './state';
 
