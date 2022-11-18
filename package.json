@@ -32,7 +32,7 @@
     "cpp-wasm-loader": "^0.9.0",
     "cross-env": "^5.2.0",
     "file-loader": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "lit-element": "^2.2.0",
     "nodemon": "^1.18.11",
     "rimraf": "^2.6.3",
